@@ -1,0 +1,140 @@
+{% extends 'base.html' %} {% block cta %}
+
+<div class="container">
+  <div class="row">
+    <div class="col-12 px-5 pt-5">Pendaftaran</div>
+  </div>
+</div>
+{% endblock cta %} {% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col-12 px-5 py-5">
+      <div class="m-auto">
+        {% if messages %}
+        <div class="alert alert-primary" role="alert">
+          {% for message in messages %} {{message}} {% endfor %}
+        </div>
+        {% endif %}
+
+        <form
+          class="needs-validation"
+          novalidate
+          method="POST"
+          enctype="multipart/form-data"
+          action="{% url 'pendaftaran' %}"
+        >
+          {% csrf_token %}
+          <h1 class="h3 fw-bold text-gradient">Pendaftaran Pasien Online</h1>
+          <span>Klinik Bidan Diani Mey Rimawati</span>
+
+          <div class="card mt-5 mb-3">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-6">
+                  <div class="form-floating">
+                    <input
+                      required
+                      name="email"
+                      type="email"
+                      class="form-control"
+                      placeholder="name@example.com"
+                    />
+                    <label>Email address</label>
+                  </div>
+                </div>
+
+                <div class="col-6">
+                  <div class="form-floating mb-3">
+                    <input
+                      required
+                      name="nomortelepon"
+                      type="text"
+                      pattern="[08]{2}[0-9]{10}"
+                      class="form-control"
+                      placeholder="08xxxxxxxxxxxx"
+                    />
+                    <label>Nomor Telepon</label>
+                  </div>
+                </div>
+
+                <div class="col-6">
+                  <div class="form-floating mb-3">
+                    <input
+                      required
+                      name="name"
+                      type="text"
+                      class="form-control"
+                      placeholder="nama lengkap"
+                    />
+                    <label>Nama Lengkap</label>
+                  </div>
+                </div>
+
+                <div class="col-6">
+                  <div class="form-floating">
+                    <select
+                      required
+                      name="jeniskelamin"
+                      class="form-select"
+                      id="floatingSelect"
+                      aria-label="Floating label select example"
+                    >
+                      <option value="Perempuan">Perempuan</option>
+                      <option value="Laki">Laki-laki</option>
+                    </select>
+                    <label for="floatingSelect">Jenis Kelamin</label>
+                  </div>
+                </div>
+
+                <div class="col-12">
+                  <div class="form-floating">
+                    <textarea
+                      required
+                      class="form-control"
+                      name="message"
+                      placeholder="Leave a comment here"
+                      id="floatingTextarea2"
+                    ></textarea>
+                    <label for="floatingTextarea2">Pesan</label>
+                  </div>
+                </div>
+
+                <!-- <div class="col-6">
+                      <div class="form-floating mb-3">
+                        <input
+                          name="password"
+                          type="password"
+                          class="form-control"
+                          id="floatingPassword"
+                          placeholder="Password"
+                        />
+                        <label for="floatingPassword">Password</label>
+                      </div>
+                    </div>
+
+                    <div class="col-6">
+                      <div class="form-floating">
+                        <input
+                          name="repeatpassword"
+                          type="password"
+                          class="form-control"
+                          id="floatingPassword"
+                          placeholder="Password"
+                        />
+                        <label for="floatingPassword">Re-Password</label>
+                      </div>
+                    </div> -->
+              </div>
+            </div>
+          </div>
+          <div class="ms-auto col-6">
+            <button class="w-100 btn btn-primary" type="submit" value="Submit">
+              Daftar
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}
