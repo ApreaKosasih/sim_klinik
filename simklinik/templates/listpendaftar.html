@@ -1,25 +1,68 @@
 {% extends 'base.html' %} {% block content %}
 
 <div class="container my-4">
+  {% if messages %}
+  <div class="alert alert-primary" role="alert">
+    {% for message in messages %} {{message}} {% endfor %}
+  </div>
+  {% endif %}
   <div class="row g-4">
     {% for data in pendaftaran %}
-    <div class="col-4">
-      <div class="card">
-        <div class="card-body">
-          <p scope="row">{{data.id}}</p>
-          <p>{{data.name}}</p>
-          <p>{{data.email}}</p>
-          <p>{{data.nomortelepon}}</p>
-          <p>{{data.jeniskelamin}}</p>
-          <p>
-            {{data.tanggal_daftar|date:"d"}}-{{data.tanggal_daftar|date:"M"}}
-          </p>
-          <p>{{data.message}}</p>
-        </div>
+    <div class="col-12 col-md-4">
+      <div class="p-4 rounded-4 bg-body shadow border">
+        <p scope="row">{{data.id}}</p>
+        <p>{{data.name}}</p>
+        <p>{{data.email}}</p>
+        <p>{{data.nomortelepon}}</p>
+        <p>{{data.jeniskelamin}}</p>
+        <p>{{data.tanggal_daftar|date:"d"}}-{{data.tanggal_daftar|date:"M"}}</p>
+        <p>{{data.message}}</p>
+
+        {% if data.daftar_konfirmasi == False %}
+        <form method="POST" action="{% url 'manage' %}">
+          {% csrf_token %}
+          <input type="date" name="date" />
+          <input type="hidden" name="pendaftaran-id" value="{{data.id}}" />
+          <input type="submit" value="Accept" />
+        </form>
+        {% endif %}
       </div>
     </div>
     {% endfor %}
   </div>
+
+  {% if is_paginated %}
+  <nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center my-5">
+      {% if page_obj.has_previous %}
+      <li class="page-item">
+        <a
+          class="page-link"
+          href="?page={{page_obj.prebious_page_number}}"
+          aria-label="Previous"
+        >
+          <span aria-hidden="true">&laquo;</span>
+        </a>
+      </li>
+      {% endif %} {% for number in page_obj.paginator.page_range %}
+      <li class="page-item">
+        <a class="page-link" href="?page={{number}}">{{number}}</a>
+      </li>
+      {% endfor %} {% if page_obj.has_next %}
+
+      <li class="page-item">
+        <a
+          class="page-link"
+          href="?page={{page_obj.prebious_page_number}}"
+          aria-label="Next"
+        >
+          <span aria-hidden="true">&raquo;</span>
+        </a>
+      </li>
+      {% endif %}
+    </ul>
+  </nav>
+  {% endif %}
 </div>
 
 {% endblock content %} {% block script %} {% endblock script %}
