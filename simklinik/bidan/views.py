@@ -1,6 +1,6 @@
 import datetime
 from django.http.response import HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.views.generic.base import TemplateView
 from django.core.mail import EmailMessage
@@ -10,7 +10,9 @@ from .models import Pendaftaran
 from django.views.generic import ListView
 from django.template import Context
 from django.template.loader import render_to_string, get_template
+from .forms import RegisterForm, LoginForm
 
+from django.contrib.auth import authenticate, login
 
 # Create your views here.
 
@@ -35,6 +37,40 @@ class HomeTemplateView(TemplateView):
         messages.add_message(request, messages.SUCCESS,
                              f"Terimakasih {name} telah menghubungi kami, email anda berhasil terkirim..")
         return HttpResponseRedirect(request.path)
+
+
+def register(request):
+    msg = None
+    if request.method == 'POST':
+        form = RegisterForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            msg = 'user created'
+            return redirect('login')
+        else:
+            msg = 'Terjadi Kesalahan'
+
+    else:
+        form = RegisterForm()
+    return render(request, 'register.html', {'form': form, 'msg': msg})
+
+
+def login_view(request):
+    form = LoginForm(request.POST or None)
+    msg = None
+    if request.method == 'POST':
+        if form.is_valid():
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
+            user = authenticate(username=username, password=password)
+            if user is not None:
+                login(request, user)
+                return redirect('home')
+            else:
+                msg = 'Terjadi Kesalahan'
+        else:
+            msg = 'Error'
+    return render(request, 'login.html', {'form': form, 'msg': msg})
 
 
 class PendaftaranTemplateView(TemplateView):
@@ -99,7 +135,7 @@ class ManagePendaftaranTemplateView(ListView):
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
-        pendaftaran = Pendaftaran.objects.all()
+        # pendaftaran = Pendaftaran.objects.all()
         context.update({
             "title": "Manage Pendaftaran"
         })

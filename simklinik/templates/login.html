@@ -1,0 +1,90 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Login</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" />
+    <script
+      src="https://code.jquery.com/jquery-3.6.1.min.js"
+      integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
+      crossorigin="anonymous"
+    ></script>
+  </head>
+
+  <body class="bg-light">
+    <div class="container">
+      <div style="min-height: 100vh" class="row justify-content-center">
+        <div class="col-12 col-md-6 my-auto">
+          <div class="p-4 rounded-4 bg-body shadow border">
+            <p class="mb-4 text-muted">
+              {% if msg %} {{ msg | safe }} {% else %} Login page {% endif %}
+            </p>
+            <form method="post">
+              {% csrf_token %}
+              <div class="form-group">
+                <label for="username">Username</label>
+                {{ form.username }}
+              </div>
+              <div class="form-group last mb-4">
+                <label for="password">Password</label>
+                {{ form.password }}
+              </div>
+
+              <div class="d-flex mb-5 align-items-center">
+                <label class="control control--checkbox mb-0"
+                  ><span class="caption">Ingat Saya</span>
+                  <input type="checkbox" checked="checked" />
+                  <div class="control__indicator"></div>
+                </label>
+                {% comment %}
+                <span class="ms-auto"
+                  ><a href="#" class="forgot-pass">Lupa Password</a></span
+                >
+                {% endcomment %}
+              </div>
+
+              <input
+                type="submit"
+                value="Log In"
+                class="w-100 btn btn-pill text-white btn-block btn-primary"
+              />
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script
+      type="text/javascript"
+      src="{% static 'js/bootstrap.min.js' %}"
+    ></script>
+
+    <script>
+            {% block script %}
+            // Example starter JavaScript for disabling form submissions if there are invalid fields
+      (() => {
+        'use strict'
+
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        const forms = document.querySelectorAll('.needs-validation')
+
+        // Loop over them and prevent submission
+        Array.from(forms).forEach(form => {
+          form.addEventListener('submit', event => {
+            if (!form.checkValidity()) {
+              event.preventDefault()
+              event.stopPropagation()
+            }
+
+            form.classList.add('was-validated')
+          }, false)
+        })
+      })()
+            {% endblock script %}
+    </script>
+  </body>
+</html>

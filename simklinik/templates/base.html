@@ -7,7 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{{titles}}</title>
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" />
-    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
     <script
       src="https://code.jquery.com/jquery-3.6.1.min.js"
       integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
@@ -56,6 +55,26 @@
               >
             </li>
             {% if request.user.is_authenticated %}
+
+            <li class="nav-item">
+              <a class="btn btn-sm btn-primary m-1" href="{% url 'login' %}"
+                >Logout</a
+              >
+            </li>
+
+            {% else %}
+            <li class="nav-item">
+              <a class="btn btn-sm btn-primary m-1" href="{% url 'login' %}"
+                >Login</a
+              >
+            </li>
+            {% endif %} {% if request.user.is_authenticated %} {% else %}
+            <li class="nav-item">
+              <a class="btn btn-sm btn-primary m-1" href="{% url 'register' %}"
+                >Register</a
+              >
+            </li>
+            {% endif %} {% if request.user.is_admin or request.user.is_bidan %}
             <li class="nav-item">
               <a class="btn btn-sm btn-primary m-1" href="{% url 'manage' %}"
                 >MANAGE PENDAFTARAN</a
