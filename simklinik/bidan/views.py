@@ -12,7 +12,7 @@ from django.template import Context
 from django.template.loader import render_to_string, get_template
 from .forms import RegisterForm, LoginForm
 
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 
 # Create your views here.
 
@@ -66,11 +66,23 @@ def login_view(request):
             if user is not None:
                 login(request, user)
                 return redirect('home')
+            elif user is not None and user.is_admin:
+                login(request, user)
+                return redirect('manage')
+            elif user is not None and user.is_bidan:
+                login(request, user)
+                return redirect('manage')
             else:
                 msg = 'Terjadi Kesalahan'
         else:
             msg = 'Error'
     return render(request, 'login.html', {'form': form, 'msg': msg})
+
+
+def logout_view(request):
+    logout(request)
+    messages.info(request, "Berhasil logout.")
+    return redirect('home')
 
 
 class PendaftaranTemplateView(TemplateView):

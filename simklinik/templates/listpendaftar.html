@@ -7,7 +7,9 @@
   </div>
   {% endif %}
   <div class="row g-4">
-    {% for data in pendaftaran %}
+    {% if data in pendaftaran is None %}
+    <p>Belum Ada Pendaftaran</p>
+    {% else %} {% for data in pendaftaran %}
     <div class="col-12 col-md-4">
       <div class="p-4 rounded-4 bg-body shadow border">
         <p scope="row">{{data.id}}</p>
@@ -28,7 +30,7 @@
         {% endif %}
       </div>
     </div>
-    {% endfor %}
+    {% endfor %} {% endif %}
   </div>
 
   {% if is_paginated %}
