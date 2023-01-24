@@ -39,7 +39,7 @@ class HomeTemplateView(TemplateView):
         return HttpResponseRedirect(request.path)
 
 
-def register(request):
+def register_view(request):
     msg = None
     if request.method == 'POST':
         form = RegisterForm(request.POST)
