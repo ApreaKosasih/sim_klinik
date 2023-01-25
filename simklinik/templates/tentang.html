@@ -1,0 +1,43 @@
+{% extends 'base.html' %} {% load static %} {% block cta %} {% endblock cta %}
+{% block content %}
+
+<div class="container">
+  <div class="row mt-5">
+    <div class="px-4 py-5 rounded shadow bg-body">
+      <div class="col-12 text-center">
+        <p>
+          Alikasi ini dibuat guna memenuhi sebagian persyaratan untuk<br />memperoleh
+          gelar <strong>Sarjana Komputer</strong> pada program studi<br />
+          <strong
+            >Ilmu Komputer<br />Fakultas Matematika dan Ilmu Pengetahuan Alam<br />
+            Universitas Pakuan Bogor</strong
+          >
+        </p>
+        <img
+          width="128"
+          height="128"
+          src="{% static 'img/logo.webp' %}"
+          alt=""
+        />
+      </div>
+
+      <div class="d-flex">
+        <div class="mx-auto mt-4">
+          <table>
+            <tr>
+              <td>Nama</td>
+              <td>:</td>
+              <td class="fw-semibold">Boy Relando Tumpal Parulian Purba</td>
+            </tr>
+            <tr>
+              <td>NPM</td>
+              <td>:</td>
+              <td class="fw-semibold">0651-16-194</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      {% endblock content %}
+    </div>
+  </div>
+</div>

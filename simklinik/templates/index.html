@@ -13,6 +13,9 @@
           pemeriksaan dengan standar buku KIA, juga semua profil dan jadwal
           kunjungan pasien, dalam satu aplikasi dengan mudah.
         </p>
+        <a class="btn btn-primary" href="{% url 'pendaftaran' %}"
+          >PENDAFTARAN PASIEN</a
+        >
       </div>
     </div>
   </div>
@@ -36,10 +39,11 @@
           action="{% url 'home' %}"
         >
           {% csrf_token %}
-          <h1 class="h3 fw-bold text-gradient">
-            Konfirmasi Pendaftaran Pasien Online
-          </h1>
-          <span>Klinik Bidan Diani Mey Rimawati</span>
+          <h1 class="h3 fw-bold text-gradient">Hubungi Kami Melalui Email</h1>
+          <span
+            >Klinik Bidan Diani Mey Rimawati, melayani konsultasi atau
+            pertanyaan secara online melalui email</span
+          >
 
           <div class="card mt-5 mb-3">
             <div class="card-body">

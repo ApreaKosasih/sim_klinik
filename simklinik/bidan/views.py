@@ -39,6 +39,10 @@ class HomeTemplateView(TemplateView):
         return HttpResponseRedirect(request.path)
 
 
+class TentangTemplateView(TemplateView):
+    template_name = 'tentang.html'
+
+
 def register_view(request):
     msg = None
     if request.method == 'POST':

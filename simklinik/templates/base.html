@@ -43,7 +43,7 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ms-auto">
             <li class="nav-item">
-              <a class="btn btn-sm btn-primary m-1" href="#"
+              <a class="btn btn-sm btn-primary m-1" href="{% url 'tentang' %}"
                 >TENTANG APLIKASI</a
               >
             </li>
@@ -66,12 +66,6 @@
             <li class="nav-item">
               <a class="btn btn-sm btn-primary m-1" href="{% url 'login' %}"
                 >Login</a
-              >
-            </li>
-            {% endif %} {% if request.user.is_authenticated %} {% else %}
-            <li class="nav-item">
-              <a class="btn btn-sm btn-primary m-1" href="{% url 'register' %}"
-                >Register</a
               >
             </li>
             {% endif %} {% if request.user.is_admin or request.user.is_bidan %}
