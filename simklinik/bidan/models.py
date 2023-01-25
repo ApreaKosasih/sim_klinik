@@ -18,6 +18,7 @@ class Pendaftaran(models.Model):
     message = models.TextField(blank=True)
     tanggal_daftar = models.DateField(auto_now_add=True)
     daftar_konfirmasi = models.BooleanField(default=False)
+    periksa_konfirmasi = models.BooleanField(default=False)
     tanggal_konfirmasi = models.DateField(
         auto_now_add=False, null=True, blank=True)
 
@@ -25,4 +26,16 @@ class Pendaftaran(models.Model):
         return self.name
 
     class Meta:
-        ordering = ["-tanggal_daftar", ]
+        ordering = ["tanggal_konfirmasi", ]
+
+
+class RekamMedik(models.Model):
+    pasien = models.ForeignKey(
+        Pendaftaran,
+        on_delete=models.CASCADE
+    )
+    tanggal_periksa = models.DateField(auto_now_add=True)
+    message = models.TextField(blank=True)
+    status = models.BooleanField(default=False)
+    tanggal_kembali = models.DateField(
+        auto_now_add=False, null=True, blank=True)

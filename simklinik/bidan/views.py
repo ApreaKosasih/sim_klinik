@@ -1,23 +1,18 @@
 import datetime
 from django.http.response import HttpResponseRedirect
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
 from django.views.generic.base import TemplateView
 from django.core.mail import EmailMessage
 from django.conf import settings
 from django.contrib import messages
-from .models import Pendaftaran
+from .models import Pendaftaran, RekamMedik
 from django.views.generic import ListView
-from django.template import Context
-from django.template.loader import render_to_string, get_template
+from django.template.loader import get_template
 from .forms import RegisterForm, LoginForm
+from django.db.models import Count
 
 from django.contrib.auth import authenticate, login, logout
-from django.core.paginator import (
-    Paginator,
-    EmptyPage,
-    PageNotAnInteger,
-)
+
 # Create your views here.
 
 
@@ -115,6 +110,92 @@ class PendaftaranTemplateView(TemplateView):
 
         messages.add_message(request, messages.SUCCESS,
                              f"Terimaksih, {name} untuk proses pendaftaran sudah berhasil...")
+        return HttpResponseRedirect(request.path)
+
+
+# class BidanTemplateView(ListView):
+#     template_name = 'bidan.html'
+#     model = Pendaftaran
+#     context_object_name = "pendaftaran"
+#     login_required = True
+
+#     def get_context_data(self, *args, **kwargs):
+#         context = super().get_context_data(*args, **kwargs)
+#         # pendaftaran = Pendaftaran.objects.all()
+#         context.update({
+#             "title": "Manage Pendaftaran"
+#         })
+#         return context
+
+#     def post(self, request):
+#         date = request.POST.get("date")
+#         id_periksa = request.POST.get("periksa-id")
+#         hasil = request.POST.get("hasil")
+
+#         rekammedik = RekamMedik.objects.create(
+#             pasien_id=id_periksa,
+#             tanggal_kembali=date,
+#             message=hasil
+#         )
+#         rekammedik.status = True
+#         rekammedik.save()
+
+#         pendaftaran = Pendaftaran.objects.get(
+#             id=id_periksa,
+#         )
+#         pendaftaran.periksa_konfirmasi = True
+#         pendaftaran.save()
+
+#         return HttpResponseRedirect(request.path)
+
+class BidanTemplateView(TemplateView):
+    template_name = 'bidan.html'
+    login_required = True
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+        pendaftaran = Pendaftaran.objects.all()
+        riwayat = RekamMedik.objects.all()
+        context.update({
+            "pendaftaran": pendaftaran,
+            "riwayat": riwayat
+        })
+        return context
+
+    def post(self, request):
+        date = request.POST.get("date")
+        id_periksa = request.POST.get("periksa-id")
+        hasil = request.POST.get("hasil")
+
+        rekammedik = RekamMedik.objects.create(
+            pasien_id=id_periksa,
+            tanggal_kembali=date,
+            message=hasil
+        )
+        rekammedik.status = True
+        rekammedik.save()
+
+        pendaftaran = Pendaftaran.objects.get(
+            id=id_periksa,
+        )
+        pendaftaran.periksa_konfirmasi = True
+        pendaftaran.save()
+
+        data = {
+            "name": pendaftaran.name,
+            "date": date,
+            "hasil": hasil,
+        }
+        message = get_template('email.html').render(data)
+        email = EmailMessage(
+            "Hasil Pemeriksaan di Klinik Bidan",
+            message,
+            settings.EMAIL_HOST_USER,
+            [pendaftaran.email]
+        )
+        email.content_subtype = "html"
+        email.send()
+
         return HttpResponseRedirect(request.path)
 
 

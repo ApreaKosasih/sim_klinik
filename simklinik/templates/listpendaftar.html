@@ -61,6 +61,12 @@
             value="Konfirmasi"
           />
         </form>
+        {% else %}
+        <p class="text-center mt-4">
+          <span class="material-icons-round fs-1 text-success"> verified </span>
+        </p>
+        <h6 class="text-center">Terjadwal : {{data.tanggal_konfirmasi}}</h6>
+
         {% endif %}
       </div>
     </div>

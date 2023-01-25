@@ -7,6 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{{titles}}</title>
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons+Round"
+    />
     <script
       src="https://code.jquery.com/jquery-3.6.1.min.js"
       integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
@@ -29,6 +33,21 @@
             alt=""
           />
         </a>
+        {% if request.user.is_authenticated %}
+
+        <li class="nav-item">
+          <a class="btn btn-sm btn-primary m-1" href="{% url 'logout' %}"
+            >Logout</a
+          >
+        </li>
+
+        {% else %}
+        <li class="nav-item">
+          <a class="btn btn-sm btn-primary m-1" href="{% url 'login' %}"
+            >Login</a
+          >
+        </li>
+        {% endif %}
         <button
           class="navbar-toggler"
           type="button"
@@ -54,24 +73,16 @@
                 >PENDAFTARAN PASIEN</a
               >
             </li>
-            {% if request.user.is_authenticated %}
-
-            <li class="nav-item">
-              <a class="btn btn-sm btn-primary m-1" href="{% url 'logout' %}"
-                >Logout</a
-              >
-            </li>
-
-            {% else %}
-            <li class="nav-item">
-              <a class="btn btn-sm btn-primary m-1" href="{% url 'login' %}"
-                >Login</a
-              >
-            </li>
-            {% endif %} {% if request.user.is_admin or request.user.is_bidan %}
+            {% if request.user.is_admin or request.user.is_bidan %}
             <li class="nav-item">
               <a class="btn btn-sm btn-primary m-1" href="{% url 'manage' %}"
                 >MANAGE PENDAFTARAN</a
+              >
+            </li>
+            {% endif %} {% if request.user.is_bidan %}
+            <li class="nav-item">
+              <a class="btn btn-sm btn-primary m-1" href="{% url 'bidan' %}"
+                >PEMERIKSAAN PASIEN</a
               >
             </li>
             {% endif %}

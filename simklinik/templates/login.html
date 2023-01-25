@@ -40,10 +40,14 @@
               />
 
               <div class="d-flex mt-5 align-items-center">
-                <p>Belum punya akun ?</p>
+                {% comment %}
+                <p>Daftarkan Akun</p>
+                {% endcomment %}
                 <span class="ms-auto">
-                  <a class="btn btn-sm btn-primary" href="{% url 'register' %}"
-                    >Daftar Disini</a
+                  <a
+                    class="btn btn-sm btn-outline-primary"
+                    href="{% url 'register' %}"
+                    >Daftarkan Akun</a
                   ></span
                 >
               </div>
