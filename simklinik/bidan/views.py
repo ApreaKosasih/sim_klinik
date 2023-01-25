@@ -13,7 +13,11 @@ from django.template.loader import render_to_string, get_template
 from .forms import RegisterForm, LoginForm
 
 from django.contrib.auth import authenticate, login, logout
-
+from django.core.paginator import (
+    Paginator,
+    EmptyPage,
+    PageNotAnInteger,
+)
 # Create your views here.
 
 

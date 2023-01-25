@@ -1,6 +1,6 @@
 {% extends 'base.html' %} {% block content %}
 
-<div class="container my-4">
+<div class="container mt-5">
   {% if messages %}
   <div class="alert alert-primary" role="alert">
     {% for message in messages %} {{message}} {% endfor %}
@@ -11,21 +11,55 @@
     <p>Belum Ada Pendaftaran</p>
     {% else %} {% for data in pendaftaran %}
     <div class="col-12 col-md-4">
-      <div class="p-4 rounded-4 bg-body shadow border">
-        <p scope="row">{{data.id}}</p>
-        <p>{{data.name}}</p>
-        <p>{{data.email}}</p>
-        <p>{{data.nomortelepon}}</p>
-        <p>{{data.jeniskelamin}}</p>
-        <p>{{data.tanggal_daftar|date:"d"}}-{{data.tanggal_daftar|date:"M"}}</p>
-        <p>{{data.message}}</p>
+      <div class="p-4 rounded-4 bg-body shadow border h-100">
+        <div
+          class="p-2 bg-light rounded text-dark d-flex justify-content-between"
+        >
+          <span>No : {{data.id}}</span
+          ><span
+            >Tanggal
+            :{{data.tanggal_daftar|date:"d"}}-{{data.tanggal_daftar|date:"M"}}</span
+          >
+        </div>
+
+        <table style="font-size: 11pt" class="my-2">
+          <tr>
+            <td>Nama</td>
+            <td>:</td>
+            <td class="fw-semibold">{{data.name}}</td>
+          </tr>
+          <tr>
+            <td>Email</td>
+            <td>:</td>
+            <td class="fw-semibold">{{data.email}}</td>
+          </tr>
+          <tr>
+            <td>No Telepon</td>
+            <td>:</td>
+            <td class="fw-semibold">{{data.nomortelepon}}</td>
+          </tr>
+          <tr>
+            <td>Jenis Kelamin</td>
+            <td>:</td>
+            <td class="fw-semibold">{{data.jeniskelamin}}</td>
+          </tr>
+        </table>
+
+        <div class="p-2 rounded bg-body border border-warning mb-2">
+          <span>{{data.message}}</span>
+        </div>
 
         {% if data.daftar_konfirmasi == False %}
         <form method="POST" action="{% url 'manage' %}">
           {% csrf_token %}
-          <input type="date" name="date" />
+          <label class="text-primary fw-semibold">Jadwalkan pada :</label>
+          <input class="form-control my-2" type="date" name="date" required />
           <input type="hidden" name="pendaftaran-id" value="{{data.id}}" />
-          <input type="submit" value="Accept" />
+          <input
+            class="btn btn-success w-100"
+            type="submit"
+            value="Konfirmasi"
+          />
         </form>
         {% endif %}
       </div>
@@ -35,27 +69,36 @@
 
   {% if is_paginated %}
   <nav aria-label="Page navigation example">
-    <ul class="pagination justify-content-center my-5">
+    <ul class="pagination justify-content-center mt-5">
       {% if page_obj.has_previous %}
       <li class="page-item">
         <a
           class="page-link"
-          href="?page={{page_obj.prebious_page_number}}"
+          href="?page={{page_obj.previous_page_number }}"
           aria-label="Previous"
         >
           <span aria-hidden="true">&laquo;</span>
         </a>
       </li>
       {% endif %} {% for number in page_obj.paginator.page_range %}
-      <li class="page-item">
-        <a class="page-link" href="?page={{number}}">{{number}}</a>
-      </li>
+      <div>
+        {% if page_obj.number == number %}
+        <li class="page-item active">
+          <a class="page-link" href="?page={{number}}">{{number}}</a>
+        </li>
+        {% else %}
+        <li class="page-item">
+          <a class="page-link" href="?page={{number}}">{{number}}</a>
+        </li>
+        {% endif %}
+      </div>
+
       {% endfor %} {% if page_obj.has_next %}
 
       <li class="page-item">
         <a
           class="page-link"
-          href="?page={{page_obj.prebious_page_number}}"
+          href="?page={{page_obj.next_page_number }}"
           aria-label="Next"
         >
           <span aria-hidden="true">&raquo;</span>
