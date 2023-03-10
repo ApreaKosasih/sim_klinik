@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'bidan',
+    'django_extensions',
 ]
 
 MIDDLEWARE = [
@@ -140,3 +141,9 @@ EMAIL_PORT = "587"
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'klinikbidanonline@gmail.com'
 EMAIL_HOST_PASSWORD = 'ypbzpdkocqlbievr'
+
+
+GRAPH_MODELS = {
+    'all_applications': True,
+    'graph_models': True,
+}

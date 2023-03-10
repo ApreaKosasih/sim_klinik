@@ -62,26 +62,24 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ms-auto">
             <li class="nav-item">
-              <a class="btn btn-sm btn-primary m-1" href="{% url 'tentang' %}"
+              <a class="nav-link" href="{% url 'tentang' %}"
                 >TENTANG APLIKASI</a
               >
             </li>
             <li class="nav-item">
-              <a
-                class="btn btn-sm btn-primary m-1"
-                href="{% url 'pendaftaran' %}"
+              <a class="nav-link" href="{% url 'pendaftaran' %}"
                 >PENDAFTARAN PASIEN</a
               >
             </li>
             {% if request.user.is_admin or request.user.is_bidan %}
             <li class="nav-item">
-              <a class="btn btn-sm btn-primary m-1" href="{% url 'manage' %}"
+              <a class="nav-link" href="{% url 'manage' %}"
                 >MANAGE PENDAFTARAN</a
               >
             </li>
             {% endif %} {% if request.user.is_bidan %}
             <li class="nav-item">
-              <a class="btn btn-sm btn-primary m-1" href="{% url 'bidan' %}"
+              <a class="nav-link" href="{% url 'bidan' %}"
                 >PEMERIKSAAN PASIEN</a
               >
             </li>
