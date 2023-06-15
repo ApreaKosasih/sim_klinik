@@ -81,7 +81,7 @@
                 >MANAGE PENDAFTARAN</a
               >
             </li>
-            {% endif %} {% if request.user.is_bidan %}
+            <!-- {% endif %} {% if request.user.is_bidan %} -->
             <li class="nav-item">
               <a class="nav-link" href="{% url 'bidan' %}"
                 >PEMERIKSAAN PASIEN</a
@@ -102,8 +102,8 @@
     ></script>
 
     <script>
-            {% block script %}
-            // Example starter JavaScript for disabling form submissions if there are invalid fields
+      {% block script %}
+      // Example starter JavaScript for disabling form submissions if there are invalid fields
       (() => {
         'use strict'
 
@@ -122,7 +122,7 @@
           }, false)
         })
       })()
-            {% endblock script %}
+      {% endblock script %}
     </script>
   </body>
 </html>

@@ -12,9 +12,12 @@ class User(AbstractUser):
 
 class Pendaftaran(models.Model):
     name = models.CharField(max_length=50)
+    name_pasangan = models.CharField(max_length=50, default="")
+    name_anak = models.CharField(max_length=50, default="")
     email = models.CharField(max_length=100)
     nomortelepon = models.CharField(max_length=15)
     jeniskelamin = models.CharField(max_length=15)
+    alamat = models.TextField(blank=True)
     message = models.TextField(blank=True)
     tanggal_daftar = models.DateField(auto_now_add=True)
     daftar_konfirmasi = models.BooleanField(default=False)

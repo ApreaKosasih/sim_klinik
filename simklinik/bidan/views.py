@@ -93,16 +93,22 @@ class PendaftaranTemplateView(TemplateView):
 
     def post(self, request):
         name = request.POST.get("name")
+        name_pasangan = request.POST.get("name_pasangan")
+        name_anak = request.POST.get("name_anak")
         nomortelepon = request.POST.get("nomortelepon")
         email = request.POST.get("email")
         jeniskelamin = request.POST.get("jeniskelamin")
+        alamat = request.POST.get("alamat")
         message = request.POST.get("message")
 
         pendaftaran = Pendaftaran.objects.create(
             name=name,
+            name_pasangan=name_pasangan,
+            name_anak=name_anak,
             email=email,
             nomortelepon=nomortelepon,
             message=message,
+            alamat=alamat,
             jeniskelamin=jeniskelamin,
         )
 
