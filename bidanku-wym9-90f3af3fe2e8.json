@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "bidanku-wym9",
+  "private_key_id": "90f3af3fe2e81c5d56f06b2a292dbb7a5834da5e",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQDUJG5bSwOVC7xj\nmXPWSLFK+WlrK3RxRnfGvEH6mdtG1BRyGjydk4ADEVfDY78JwOHdzFvqxz91bmBE\nJ+2AHio5qweUhmAFmyR8JGgfokOi0OK6sY3He7q2h1VS4w3KLAYnjSsvMonMSqUy\nl1FiDX/lchbZDlI2MVIWBPogbkPI5k1nK51hy8becxhrsrE5qfBV2ZIi7KodPCqO\njqvlXkSo3IdRV0vrzEp2pXFt5am9Rl6YHmjKKwJt10nQG+3EmWioPb9nCasvi+dh\niXm+55RX5eCiLykv94u+SzyhIKO7lmYEDcIYSim0SGEQk1GQmDvPJYYdA7ZkKuS5\nYHV9rjbjAgMBAAECggEAUglakbxDAN6+deewF3QZ94vWu+Zci7d79yLzAtV/qfa2\nh19lBGy3Srhor3sBs+Rek/aErxhpDmDmIkUsf2hq3M0qS8HhHRnfNJChoWYO8MYF\nf7vMv5E15YMVOE3slbuLj7z0L7bD+ff9xUAl7RyaUmDZvAthOGq/OxumnGb3mJbe\nd23ovCj9DLm7ebjV5pzmCwR5/1BLrmN9MQaWTC2Gy2dfQPGzTGNhJpzswKoeMc8I\nw287A1S2iwMfznj/6IHO1CZCakEdpfzrVWelONhbqlQef4j5I2LhVfjHbE8Ayvoq\nPqMhPI/P1Q62QHtK+4bG1ksS4AntwidWXk24evFcJQKBgQDz7bqlV/YNkmy4WS0u\n3ZvrR3lw/4VnKF3A+lH4pJRTpf+99OvJVsfu8MrbfJULqdSKmZF0zEf0DiTCPma4\nDf8qXENcQEy5XzxdvxQ8X7PwvwtkkkF8VNEYeVN/DRFaoXmRNkJmwq5pfD6qicip\nOa5FanPjrJbNTfQWswkuQpKVFQKBgQDepAJQREiDB/cUfEctr80FnhxHi5L9X1qh\nmFxS5metWp69AQjnmS1K0hJe+dtWvKXO5gpCVgr/YusAkMaDrzita64JYwRHwkER\nx81m3NmPuJf4S6HElxu3Koq0P77jlcWlPozlsFEYCPsjjU50Fnh7WEFRRlnPp/k7\njkmDMfAKFwKBgGRsWewaY4VA5BudMxnZSIi7m0anG9/VYYvCQp8P+rTZYYlt3Oi+\nHn/DiHCGQMJVf9gz0wt30qOqcv25PQbHVGa3J1BCdJPYnnyl3wngCK+zp1gXUniC\nXrcps/NZiOx8EBV1di7iNXXeHdqN8RuiUJnpcp6n/km1ryjtOnleFQTlAoGAOTf3\nbD+QTzSd2IL0HBbBXz86T1zcowd9mGg62gdi/9d5UmPQsQzZ6g/BLu2R5GHJTzop\nytCoNOhsMxICItfGfjNdYAY1lGelJ3etH1GFDH3JeMOfSJH5SoLBcP+tBHp6eDRy\nK5m7zayJNqLbVdRslG6jIsssy8SEtjykQfZ0lXMCgYBG4MYPzBWSs+k4SoNn7uYY\nosa1+twKWevv4X6Iohaqiy9wNqNDPIfU5VCpVZKfnhUbKhATRsAdCpLq8y0k9w5M\nxqRP/8kl8a0bOdYusvB138beLlKJ+bOjuIqstFy1mKrZgtZzn0Z2rSdw2Iujl1N2\n11ZrZwR+KGV1CmjcfHy96w==\n-----END PRIVATE KEY-----\n",
+  "client_email": "bidanku@bidanku-wym9.iam.gserviceaccount.com",
+  "client_id": "105623084491778075853",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/bidanku%40bidanku-wym9.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
