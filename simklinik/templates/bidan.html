@@ -15,33 +15,114 @@
       <div class="nav nav-tabs" id="nav-tab" role="tablist">
         <button
           class="nav-link active"
-          id="nav-home-tab"
-          data-bs-toggle="tab"
-          data-bs-target="#nav-home"
-          type="button"
-          role="tab"
-          aria-controls="nav-home"
-          aria-selected="true"
-        >
-          Daftar Pemeriksaan Pasien
-        </button>
-        <button
-          class="nav-link"
           id="nav-profile-tab"
           data-bs-toggle="tab"
           data-bs-target="#nav-profile"
           type="button"
           role="tab"
           aria-controls="nav-profile"
-          aria-selected="false"
+          aria-selected="true"
         >
           Riwayat Pemeriksaan
         </button>
+        
+        <button
+          class="nav-link"
+          id="nav-home-tab"
+          data-bs-toggle="tab"
+          data-bs-target="#nav-home"
+          type="button"
+          role="tab"
+          aria-controls="nav-home"
+          aria-selected="false"
+        >
+          Daftar Pemeriksaan Pasien
+        </button>
+        
       </div>
     </nav>
+
     <div class="tab-content" id="nav-tabContent">
       <div
         class="tab-pane fade show active"
+        id="nav-profile"
+        role="tabpanel"
+        aria-labelledby="nav-profile-tab"
+        tabindex="0"
+      >
+        <div>
+          <br />
+          <form method="get" action="">
+            <div class="row">
+              <div class="col">
+                <input
+                  class="form-control"
+                  type="text"
+                  name="search_email"
+                  placeholder="Cari berdasarkan email"
+                />
+              </div>
+              <div class="col">
+                <input
+                  class="form-control"
+                  type="text"
+                  name="search_nama"
+                  placeholder="Cari berdasarkan nama"
+                />
+              </div>
+              <div class="col">
+                <button class="btn btn-primary" type="submit">Cari</button>
+              </div>
+            </div>
+          </form>
+
+          {% regroup riwayat by pasien.email as riwayat_by_email %}
+          {% for email_group in riwayat_by_email %}
+          <br />
+          <div class="card mb-3">
+            <div class="card-header">
+              <strong>Pasien: {{ email_group.grouper }}</strong>
+            </div>
+            <div class="card-body">
+              <div style="font-size: 11pt" class="my-2">
+                {% for data in email_group.list %}
+                
+                <div class="row">
+                  <div class="col">Nama</div>
+                  <div class="col">:</div>
+                  <div class="col fw-semibold">{{ data.pasien }}</div>
+                </div>
+
+                <div class="row">
+                  <div class="col">Tanggal Periksa</div>
+                  <div class="col">:</div>
+                  <div class="col fw-semibold">{{ data.tanggal_periksa }}</div>
+                </div>
+
+                <div class="row">
+                  <div class="col">Hasil Pemeriksaan</div>
+                  <div class="col">:</div>
+                  <div class="col fw-semibold">{{ data.message }}</div>
+                </div>
+
+                <div class="row">
+                  <div class="col">Tanggal Kembali</div>
+                  <div class="col">:</div>
+                  <div class="col fw-semibold">{{ data.tanggal_kembali }}</div>
+                </div>
+
+                <hr>
+                
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+
+      <div
+        class="tab-pane fade"
         id="nav-home"
         role="tabpanel"
         aria-labelledby="nav-home-tab"
@@ -120,6 +201,8 @@
         </div>
         {% endfor %}
       </div>
+
+      {% comment %}
       <div
         class="tab-pane fade"
         id="nav-profile"
@@ -154,6 +237,7 @@
         </table>
         {% endfor %}
       </div>
+      {% endcomment %}
     </div>
   </div>
 </div>

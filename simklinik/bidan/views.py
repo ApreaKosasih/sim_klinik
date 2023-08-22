@@ -160,9 +160,22 @@ class BidanTemplateView(TemplateView):
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
+
+        search_email = self.request.GET.get('search_email')
+        search_nama = self.request.GET.get('search_nama')
+
         pendaftaran = Pendaftaran.objects.all()
         riwayat = RekamMedik.objects.all()
+
+        if search_email:
+            riwayat = riwayat.filter(pasien__email__icontains=search_email)
+        
+        if search_nama:
+            riwayat = riwayat.filter(pasien__name__icontains=search_nama)
+        
+        # active_tab = self.request.GET.get('tab', 'profile')
         context.update({
+            # "active_tab": active_tab,
             "pendaftaran": pendaftaran,
             "riwayat": riwayat
         })
@@ -192,7 +205,7 @@ class BidanTemplateView(TemplateView):
             "date": date,
             "hasil": hasil,
         }
-        message = get_template('email.html').render(data)
+        message = get_template('emailhasil.html').render(data)
         email = EmailMessage(
             "Hasil Pemeriksaan di Klinik Bidan",
             message,
@@ -203,6 +216,7 @@ class BidanTemplateView(TemplateView):
         email.send()
 
         return HttpResponseRedirect(request.path)
+
 
 
 class ManagePendaftaranTemplateView(ListView):
